@@ -4,6 +4,8 @@ const cors = require('cors');
 require('dotenv').config();
 
 const marketRoutes = require('./routes/marketRoutes');
+const authRoutes = require('./routes/authRoutes');
+const savedSearchRoutes = require('./routes/savedSearchRoutes');
 
 const app = express();
 
@@ -16,6 +18,8 @@ app.use(express.json());
 
 // Routes
 app.use('/api/markets', marketRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/saved', savedSearchRoutes);
 
 // Test route
 app.get('/', (req, res) => {

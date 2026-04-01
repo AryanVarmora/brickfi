@@ -30,3 +30,24 @@ export const getRecommendation = async (state, budget) => {
   const res = await api.post('/markets/recommend', { state, budget });
   return res.data.data;
 };
+// Saved Searches
+export const saveSearch = async (data, token) => {
+  const res = await api.post('/saved', data, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return res.data.data;
+};
+
+export const getSavedSearches = async (token) => {
+  const res = await api.get('/saved', {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return res.data.data;
+};
+
+export const deleteSavedSearch = async (id, token) => {
+  const res = await api.delete(`/saved/${id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return res.data;
+};  
