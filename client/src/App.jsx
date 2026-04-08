@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import './App.css';
-
+import SavedSearches from './pages/SavedSearches';
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -30,6 +30,7 @@ const Navbar = () => {
           <>
             <Link to="/login" className="nav-btn">Login</Link>
             <Link to="/register" className="nav-btn">Register</Link>
+            <Link to="/saved" className="nav-btn">Saved Searches</Link>
           </>
         )}
       </nav>
@@ -48,6 +49,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/saved" element={<SavedSearches />} />
             </Routes>
           </main>
         </div>

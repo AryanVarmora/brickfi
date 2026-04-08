@@ -4,7 +4,8 @@ import MarketDashboard from '../components/MarketDashboard';
 import TrendChart from '../components/TrendChart';
 import Recommendation from '../components/Recommendation';
 import { getStates, getLatestByState, getTrendsByState, getRecommendation } from '../services/api';
-
+import { useAuth } from '../context/AuthContext';
+import { saveSearch } from '../services/api';
 const Home = () => {
   const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState('');
@@ -13,7 +14,18 @@ const Home = () => {
   const [trendData, setTrendData] = useState([]);
   const [recommendation, setRecommendation] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+  const [saved, setSaved] = useState(false);
 
+  const handleSave = async () => {
+      if (!user) { alert('Please login to save searches'); return; }
+  await saveSearch({
+    state: selectedState,
+    budget: budget ? parseInt(budget) : null,
+    recommendation: recommendation?.recommendation,
+    }, user.token);
+    setSaved(true);
+  };
   useEffect(() => {
     getStates().then(setStates);
   }, []);
@@ -50,6 +62,11 @@ const Home = () => {
         <button onClick={handleAnalyze} disabled={!selectedState || loading}>
           {loading ? 'Analyzing...' : 'Analyze Market'}
         </button>
+        {recommendation && (
+        <button onClick={handleSave} disabled={saved} style={{ background: saved ? '#22c55e' : '#4f46e5' }}>
+          {saved ? '✅ Saved!' : '💾 Save Search'}
+        </button>
+)}
       </div>
 
       {marketData && (
