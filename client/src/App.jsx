@@ -3,8 +3,9 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import './App.css';
 import SavedSearches from './pages/SavedSearches';
+import './App.css';
+
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Navbar = () => {
 
   return (
     <header className="app-header">
-      <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+      <Link to="/">
         <h1>🏠 BrickFi</h1>
         <p>Real Estate Investment Analysis</p>
       </Link>
@@ -24,13 +25,13 @@ const Navbar = () => {
         {user ? (
           <>
             <span>Hi, {user.name}!</span>
+            <Link to="/saved" className="nav-btn">Saved Searches</Link>
             <button onClick={handleLogout} className="nav-btn">Logout</button>
           </>
         ) : (
           <>
             <Link to="/login" className="nav-btn">Login</Link>
             <Link to="/register" className="nav-btn">Register</Link>
-            <Link to="/saved" className="nav-btn">Saved Searches</Link>
           </>
         )}
       </nav>
