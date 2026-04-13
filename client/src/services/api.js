@@ -51,3 +51,16 @@ export const deleteSavedSearch = async (id, token) => {
   });
   return res.data;
 };  
+
+// City endpoints
+export const getCitiesByState = async (state) => {
+  const res = await api.get(`/cities/${encodeURIComponent(state)}`);
+  return res.data.data;
+};
+
+export const getCityData = async (state, city, bedrooms, propertyType) => {
+  const res = await api.get(`/cities/${encodeURIComponent(state)}/${encodeURIComponent(city)}`, {
+    params: { bedrooms, propertyType }
+  });
+  return res.data.data;
+};

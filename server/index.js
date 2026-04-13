@@ -6,7 +6,7 @@ require('dotenv').config();
 const marketRoutes = require('./routes/marketRoutes');
 const authRoutes = require('./routes/authRoutes');
 const savedSearchRoutes = require('./routes/savedSearchRoutes');
-
+const cityRoutes = require('./routes/cityRoutes');
 const app = express();
 
 // Middleware
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use('/api/markets', marketRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/saved', savedSearchRoutes);
-
+app.use('/api/cities', cityRoutes);
 // Test route
 app.get('/', (req, res) => {
   res.json({ message: 'BrickFi API is running 🏠' });
