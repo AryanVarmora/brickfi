@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 const api = axios.create({
   baseURL: API_BASE,
@@ -30,6 +30,7 @@ export const getRecommendation = async (state, budget) => {
   const res = await api.post('/markets/recommend', { state, budget });
   return res.data.data;
 };
+
 // Saved Searches
 export const saveSearch = async (data, token) => {
   const res = await api.post('/saved', data, {
@@ -50,7 +51,7 @@ export const deleteSavedSearch = async (id, token) => {
     headers: { Authorization: `Bearer ${token}` }
   });
   return res.data;
-};  
+};
 
 // City endpoints
 export const getCitiesByState = async (state) => {

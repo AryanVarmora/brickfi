@@ -25,6 +25,14 @@ app.use('/api/cities', cityRoutes);
 app.get('/', (req, res) => {
   res.json({ message: 'BrickFi API is running 🏠' });
 });
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://brickfi.vercel.app',
+    /\.vercel\.app$/
+  ],
+  methods: ['GET', 'POST', 'DELETE'],
+}));
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
