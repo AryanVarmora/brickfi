@@ -1,9 +1,9 @@
 // Convert "NewYork" → "New York"
 export const formatStateName = (state) => {
   if (!state) return '';
+  // Add space before capital letters that follow lowercase letters
   return state
-    .replace(/([A-Z])/g, ' $1')
-    .trim()
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace('Districtof Columbia', 'District of Columbia')
-    .replace('United States', 'United States');
+    .trim();
 };
