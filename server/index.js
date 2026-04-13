@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://brickfi.vercel.app',
+    'https://brickfi-five.vercel.app',
     /\.vercel\.app$/
   ],
   methods: ['GET', 'POST', 'DELETE'],
