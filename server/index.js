@@ -10,15 +10,8 @@ const cityRoutes = require('./routes/cityRoutes');
 
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://brickfi-five.vercel.app',
-    /\.vercel\.app$/
-  ],
-  methods: ['GET', 'POST', 'DELETE'],
-}));
+// Middleware - allow all origins
+app.use(cors());
 app.use(express.json());
 
 // Routes
