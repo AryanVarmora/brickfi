@@ -7,3 +7,4 @@ export const formatStateName = (state) => {
     .replace('Districtof Columbia', 'District of Columbia')
     .trim();
 };
+// v2
