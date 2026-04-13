@@ -1,3 +1,5 @@
+import { formatStateName } from '../utils/formatState';
+
 const StateSelector = ({ states, selected, onSelect }) => {
   return (
     <div className="state-selector">
@@ -9,7 +11,9 @@ const StateSelector = ({ states, selected, onSelect }) => {
       >
         <option value="">-- Choose a state --</option>
         {states.map((state) => (
-          <option key={state} value={state}>{state}</option>
+          <option key={state} value={state}>
+            {formatStateName(state)}
+          </option>
         ))}
       </select>
     </div>

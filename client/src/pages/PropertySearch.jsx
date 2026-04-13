@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getStates, getCitiesByState, getCityData, getRecommendation } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { saveSearch } from '../services/api';
-
+import { formatStateName } from '../utils/formatState';
 const stateToCode = {
   'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR',
   'California': 'CA', 'Colorado': 'CO', 'Connecticut': 'CT', 'Delaware': 'DE',
@@ -308,7 +308,7 @@ const PropertySearch = () => {
           {/* Recommendation */}
           {recommendation && (
             <div className="recommendation">
-              <h2>Our Recommendation for {form.state.replace(/([A-Z])/g, ' $1').trim()}</h2>
+             <h2>Our Recommendation for {formatStateName(form.state)}</h2>
               <div className="rec-badge" style={{ backgroundColor: recColor[recommendation.recommendation] }}>
                 {recommendation.recommendation}
               </div>

@@ -6,6 +6,7 @@ import Recommendation from '../components/Recommendation';
 import { getStates, getLatestByState, getTrendsByState, getRecommendation } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { saveSearch } from '../services/api';
+import { formatStateName } from '../utils/formatState';
 
 const Home = () => {
   const [states, setStates] = useState([]);
@@ -84,7 +85,7 @@ const Home = () => {
         <>
           <MarketDashboard data={marketData} />
           <TrendChart data={trendData} />
-          <Recommendation data={recommendation} />
+          <Recommendation data={recommendation} stateName={formatStateName(selectedState)} />
         </>
       )}
     </div>

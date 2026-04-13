@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import CompareCard from '../components/CompareCard';
 import { getStates, getLatestByState, getRecommendation } from '../services/api';
+import { formatStateName } from '../utils/formatState';
 
 const Compare = () => {
   const [states, setStates] = useState([]);
@@ -29,8 +30,8 @@ const Compare = () => {
         getRecommendation(stateA, null),
         getRecommendation(stateB, null),
       ]);
-      setDataA(latestA);
-      setDataB(latestB);
+      setDataA({ ...latestA, state: formatStateName(latestA.state) });
+      setDataB({ ...latestB, state: formatStateName(latestB.state) });
       setRecA(recommendA);
       setRecB(recommendB);
     } catch (err) {
@@ -52,7 +53,7 @@ const Compare = () => {
           <select value={stateA} onChange={(e) => setStateA(e.target.value)}>
             <option value="">-- Select State --</option>
             {states.map((s) => (
-              <option key={s} value={s}>{s}</option>
+              <option key={s} value={s}>{formatStateName(s)}</option>
             ))}
           </select>
         </div>
@@ -64,7 +65,7 @@ const Compare = () => {
           <select value={stateB} onChange={(e) => setStateB(e.target.value)}>
             <option value="">-- Select State --</option>
             {states.map((s) => (
-              <option key={s} value={s}>{s}</option>
+              <option key={s} value={s}>{formatStateName(s)}</option>
             ))}
           </select>
         </div>

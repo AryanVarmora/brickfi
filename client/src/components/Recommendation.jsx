@@ -1,4 +1,4 @@
-const Recommendation = ({ data }) => {
+const Recommendation = ({ data, stateName }) => {
   if (!data) return null;
 
   const colors = { BUY: '#22c55e', WAIT: '#ef4444', NEUTRAL: '#f59e0b' };
@@ -6,7 +6,7 @@ const Recommendation = ({ data }) => {
 
   return (
     <div className="recommendation">
-      <h2>Our Recommendation</h2>
+      <h2>Our Recommendation {stateName ? `for ${stateName}` : ''}</h2>
       <div className="rec-badge" style={{ backgroundColor: color }}>
         {data.recommendation}
       </div>
