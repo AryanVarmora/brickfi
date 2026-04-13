@@ -3,6 +3,7 @@ import { getStates, getCitiesByState, getCityData, getRecommendation } from '../
 import { useAuth } from '../context/AuthContext';
 import { saveSearch } from '../services/api';
 import { formatStateName } from '../utils/formatState';
+
 const stateToCode = {
   'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR',
   'California': 'CA', 'Colorado': 'CO', 'Connecticut': 'CT', 'Delaware': 'DE',
@@ -129,7 +130,9 @@ const PropertySearch = () => {
             <label>State *</label>
             <select name="state" value={form.state} onChange={handleChange}>
               <option value="">-- Select State --</option>
-              {states.map(s => <option key={s} value={s}>{s}</option>)}
+              {states.map(s => (
+                <option key={s} value={s}>{formatStateName(s)}</option>
+              ))}
             </select>
           </div>
 
@@ -227,13 +230,12 @@ const PropertySearch = () => {
         </div>
       </div>
 
-      {/* Results */}
       {result && (
         <div className="property-results">
 
           {/* Market Snapshot */}
           <div className="dashboard">
-            <h2>📍 {result.city}, {result.state} — Market Data</h2>
+            <h2>📍 {result.city}, {formatStateName(form.state)} — Market Data</h2>
             <div className="cards">
               <div className="card">
                 <span className="label">{getPriceLabel()}</span>
@@ -308,7 +310,7 @@ const PropertySearch = () => {
           {/* Recommendation */}
           {recommendation && (
             <div className="recommendation">
-             <h2>Our Recommendation for {formatStateName(form.state)}</h2>
+              <h2>Our Recommendation for {formatStateName(form.state)}</h2>
               <div className="rec-badge" style={{ backgroundColor: recColor[recommendation.recommendation] }}>
                 {recommendation.recommendation}
               </div>
@@ -317,7 +319,6 @@ const PropertySearch = () => {
               </ul>
             </div>
           )}
-
         </div>
       )}
     </div>
