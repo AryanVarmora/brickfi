@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import Landing from './pages/Landing';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -24,6 +25,7 @@ const Navbar = () => {
         <p>Real Estate Investment Analysis</p>
       </Link>
       <nav className="nav-links">
+        <Link to="/analyze" className="nav-btn">📊 Analyze</Link>
         <Link to="/search" className="nav-btn">🔍 Property Search</Link>
         <Link to="/compare" className="nav-btn">⚖️ Compare</Link>
         {user ? (
@@ -51,7 +53,8 @@ function App() {
           <Navbar />
           <main>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Landing />} />
+              <Route path="/analyze" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/saved" element={<SavedSearches />} />
