@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import SavedSearches from './pages/SavedSearches';
 import Compare from './pages/Compare';
 import PropertySearch from './pages/PropertySearch';
+import RentalCalculator from './pages/RentalCalculator';
 import './App.css';
 
 const Navbar = () => {
@@ -28,10 +29,11 @@ const Navbar = () => {
         <Link to="/analyze" className="nav-btn">📊 Analyze</Link>
         <Link to="/search" className="nav-btn">🔍 Property Search</Link>
         <Link to="/compare" className="nav-btn">⚖️ Compare</Link>
+        <Link to="/calculator" className="nav-btn">💰 Calculator</Link>
         {user ? (
           <>
             <span>Hi, {user.name}!</span>
-            <Link to="/saved" className="nav-btn">Saved Searches</Link>
+            <Link to="/saved" className="nav-btn">Saved</Link>
             <button onClick={handleLogout} className="nav-btn">Logout</button>
           </>
         ) : (
@@ -60,6 +62,7 @@ function App() {
               <Route path="/saved" element={<SavedSearches />} />
               <Route path="/compare" element={<Compare />} />
               <Route path="/search" element={<PropertySearch />} />
+              <Route path="/calculator" element={<RentalCalculator />} />
             </Routes>
           </main>
         </div>
