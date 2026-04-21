@@ -1,37 +1,32 @@
 import axios from 'axios';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const API_BASE = 'https://brickfi-api.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE,
   headers: { 'Content-Type': 'application/json' },
 });
 
-// Get all states
 export const getStates = async () => {
   const res = await api.get('/markets/states');
   return res.data.data;
 };
 
-// Get latest market data for a state
 export const getLatestByState = async (state) => {
   const res = await api.get(`/markets/${encodeURIComponent(state)}/latest`);
   return res.data.data;
 };
 
-// Get trend data for a state
 export const getTrendsByState = async (state, limit = 60) => {
   const res = await api.get(`/markets/${encodeURIComponent(state)}/trends?limit=${limit}`);
   return res.data.data;
 };
 
-// Get buy/wait recommendation
 export const getRecommendation = async (state, budget) => {
   const res = await api.post('/markets/recommend', { state, budget });
   return res.data.data;
 };
 
-// Saved Searches
 export const saveSearch = async (data, token) => {
   const res = await api.post('/saved', data, {
     headers: { Authorization: `Bearer ${token}` }
@@ -53,7 +48,6 @@ export const deleteSavedSearch = async (id, token) => {
   return res.data;
 };
 
-// City endpoints
 export const getCitiesByState = async (state) => {
   const res = await api.get(`/cities/${encodeURIComponent(state)}`);
   return res.data.data;
