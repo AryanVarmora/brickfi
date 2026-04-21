@@ -5,4 +5,4 @@ const { getCitiesByState, getCityData } = require('../controllers/cityController
 router.get('/:state', getCitiesByState);
 router.get('/:state/:city', getCityData);
 
-module.exports = router;
+module.exports = router;npm 
